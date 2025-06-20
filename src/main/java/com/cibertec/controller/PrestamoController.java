@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cibertec.model.Prestamo;
@@ -46,6 +47,16 @@ public class PrestamoController {
     @DeleteMapping("eliminar/{id}")
     public ResponseEntity<Map<String, Object>> eliminar(@PathVariable Long id) {
         return prestamoService.eliminarPrestamo(id);
+    }
+    
+    @GetMapping("/contar")
+    public ResponseEntity<Map<String, Long>> contarPrestamos() {
+        return prestamoService.contarPrestamos();
+    }
+    
+    @GetMapping("/contar/por-correo")
+    public ResponseEntity<Map<String, Long>> contarPorCorreo(@RequestParam String correo) {
+        return prestamoService.contarPrestamosPorCorreo(correo);
     }
 	
 }

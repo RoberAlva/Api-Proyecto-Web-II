@@ -73,6 +73,11 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+    
+    @GetMapping("/contar")
+    public ResponseEntity<Map<String, Long>> contarUsuarios() {
+        return usuarioService.contarUsuarios();
+    }
 }
 
 

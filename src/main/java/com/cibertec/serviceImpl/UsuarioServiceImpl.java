@@ -8,7 +8,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.cibertec.model.Usuario;
 import com.cibertec.repository.UsuarioRepository;
@@ -58,7 +57,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		}
 	}
 
-/*	@Override
+	@Override
 	public ResponseEntity<Map<String, Object>> crearUsuario(Usuario usuario) {
 		Map<String, Object>response =new HashMap<>();
 		Usuario nuevoUsuario = usuariorepository.save(usuario);
@@ -68,25 +67,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		response.put("usuario", nuevoUsuario);
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 		
-	}*/
-	
-	@Override
-	public ResponseEntity<Map<String, Object>> crearUsuario(Usuario usuario) {
-	    Map<String, Object> response = new HashMap<>();
-	    
-	 
-	    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-	    usuario.setContrasena(encoder.encode(usuario.getContrasena()));
-	    
-	    Usuario nuevoUsuario = usuariorepository.save(usuario);
-	    
-	    response.put("mensaje", "Usuario Agregado Exitosamente");
-	    response.put("status", HttpStatus.CREATED);
-	    response.put("usuario", nuevoUsuario);
-	    
-	    return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
-
 
 	@Override
 	public ResponseEntity<Map<String, Object>> actualizarUsuario(Long codigoUsuario, Usuario usuario) {
@@ -135,7 +116,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 			return ResponseEntity.status(HttpStatus.OK).body(response);
 		}	
 	}
-
+	 @Override
+	    public ResponseEntity<Map<String, Long>> contarUsuarios() {
+	        long total = usuariorepository.count();
+	        Map<String, Long> response = Map.of("total", total);
+	        return ResponseEntity.ok(response);
+	    }
 	
 
 }

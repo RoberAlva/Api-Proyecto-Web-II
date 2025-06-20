@@ -1,9 +1,6 @@
 package com.cibertec.config;
 
-
-
 import java.util.Arrays;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,7 +14,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
+    
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -28,13 +25,14 @@ public class SecurityConfig {
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/usuarios/**").permitAll()
-                .requestMatchers("/api/libros/**").permitAll()// Por ahora permitir todo
+                .requestMatchers("/api/libros/**").permitAll()
+                .requestMatchers("/api/prestamo/**").permitAll() // ← AGREGAR ESTA LÍNEA
                 .anyRequest().authenticated()
             );
         
         return http.build();
     }
-
+    
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();

@@ -12,5 +12,8 @@ public interface PrestamoService {
 	public ResponseEntity<Map<String, Object>> grabarPrestamo(Prestamo prestamo);
 	public ResponseEntity<Map<String, Object>> actualizarPrestamo(Long codigoPrestamo, Prestamo prestamo);
 	public ResponseEntity<Map<String, Object>> eliminarPrestamo(Long codigoPrestamo);
+	public ResponseEntity<Map<String, Long>> contarPrestamos();
+	public ResponseEntity<Map<String, Long>> contarPrestamosPorCorreo(String correo);
+	
 
 }

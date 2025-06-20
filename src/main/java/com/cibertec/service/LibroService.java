@@ -13,4 +13,6 @@ public interface LibroService {
 	public ResponseEntity<Map<String, Object>> grabarLibro(Libro libro);
 	public ResponseEntity<Map<String, Object>> actualizarLibro(Long codigoLibro, Libro libro);
 	public ResponseEntity<Map<String, Object>> eliminarLibro(Long codigoLibro);
+	public ResponseEntity<Map<String, Long>> contarLibros();
+
 }

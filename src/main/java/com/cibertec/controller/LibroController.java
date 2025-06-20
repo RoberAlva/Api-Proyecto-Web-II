@@ -74,4 +74,10 @@ public class LibroController {
         }
     }
 
+    @GetMapping("/contar")
+    public ResponseEntity<Map<String, Long>> contarLibros() {
+        return service.contarLibros();
+    }
+
+    
 }

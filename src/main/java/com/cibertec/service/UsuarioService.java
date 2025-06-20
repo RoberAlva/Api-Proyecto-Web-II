@@ -13,5 +13,5 @@ public interface UsuarioService {
 	    ResponseEntity<Map<String, Object>> crearUsuario(Usuario usuario);
 	    ResponseEntity<Map<String, Object>>  actualizarUsuario(Long codigoUsuario, Usuario usuario);
 	    ResponseEntity<Map<String, Object>>  eliminarUsuario(Long codigoUsuario);
-
+	    public ResponseEntity<Map<String, Long>> contarUsuarios();
 }

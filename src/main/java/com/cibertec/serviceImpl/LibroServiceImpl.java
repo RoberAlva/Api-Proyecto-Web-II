@@ -156,4 +156,11 @@ public class LibroServiceImpl implements LibroService {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
+    @Override
+    public ResponseEntity<Map<String, Long>> contarLibros() {
+        long total = libroRepository.count();
+        Map<String, Long> response = Map.of("total", total);
+        return ResponseEntity.ok(response);
+    }
+
 }
